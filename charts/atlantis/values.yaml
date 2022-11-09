@@ -414,10 +414,10 @@ podMonitor:
   enabled: false
   interval: "30s"
 
-# Set the desired locking DB type
+# Set the desired Locking DB type
 # lockingDbType: <boltdb|redis>
 
-# Configure Redis Locking DB.
+# Configure Redis Locking DB
 # lockingDbType value must be redis for the config to take effect
 redis: {}
 #  host: redis.host.name
