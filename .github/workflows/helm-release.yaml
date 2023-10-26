@@ -4,15 +4,13 @@ on:
   push:
     branches:
       - main
-    paths:
-      - 'charts/atlantis/**'
 
 jobs:
   release:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
@@ -21,14 +19,13 @@ jobs:
           git config user.name "$GITHUB_ACTOR"
           git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
 
-      - name: Install Helm
+      - name: Set up Helm
         uses: azure/setup-helm@v3
         with:
-          version: v3.10.3 # renovate: datasource=github-releases depName=helm packageName=helm/helm
+          version: v3.11.2
 
       - name: Run chart-releaser
         uses: helm/chart-releaser-action@v1.5.0
         env:
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
           CR_SKIP_EXISTING: true
-          CR_GENERATE_RELEASE_NOTES: true
